@@ -1,0 +1,11 @@
+# Save current ipset tables on stop.
+#   Value: yes|no,  default: no
+# Saves all ipset tables to /etc/sysconfig/ipset when firewall gets stopped
+# (e.g. on system shutdown).
+IPSET_SAVE_ON_STOP="no"
+
+# Save current ipset tables on restart.
+#   Value: yes|no,  default: no
+# Saves all ipset tables to /etc/sysconfig/ipset when firewall gets restarted.
+IPSET_SAVE_ON_RESTART="no"
+
