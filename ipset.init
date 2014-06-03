@@ -51,13 +51,16 @@ save() {
 			failure; echo
 		fi
 	fi
+	IPSET_SAVE="/usr/sbin/ipset save"
+	test -n "${IPSET_IGNORE_TABLES}" && IPSET_SAVE="$IPSET_SAVE | grep -v -E '^\w+ (${IPSET_IGNORE_TABLES/ /|}) '"
+	test -n "${IPSET_IGNORE_ENTRIES}" && IPSET_SAVE="$IPSET_SAVE | grep -v -E '^add (${IPSET_IGNORE_ENTRIES/ /|}) '"
 	echo -n $"Saving ipset tables to $IPSET_DATA"
 	cat > $IPSET_DATA << __EOF__
 ## Use /usr/sbin/ipset tool to populate your ipset tables
 ## and then 'service ipset save' to save them to this file.
 
 __EOF__
-	/usr/sbin/ipset save >> $IPSET_DATA
+	eval "${IPSET_SAVE}" >> $IPSET_DATA
 	if [ $? = 0 ]; then
 		success; echo
 	else

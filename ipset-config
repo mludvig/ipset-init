@@ -9,3 +9,11 @@ IPSET_SAVE_ON_STOP="no"
 # Saves all ipset tables to /etc/sysconfig/ipset when firewall gets restarted.
 IPSET_SAVE_ON_RESTART="no"
 
+# Ignore these ipset tables altogether
+#   Value: table-names (space separated)
+IPSET_IGNORE_TABLES=""
+
+# Do not save the entries from these ipset tables, only the table info
+# Useful for dynamic tables maintained by the likes of fail2ban, etc
+#   Value: table-names (space separated)
+IPSET_IGNORE_ENTRIES="fail2ban-v4 fail2ban-v6"
